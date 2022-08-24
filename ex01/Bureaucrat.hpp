@@ -1,6 +1,8 @@
+#pragma once
 #include <iostream>
-#include "Form.hpp"
-//_name should be constant
+#include "./Form.hpp"
+
+class Form;
 class Bureaucrat
 {
 	private :

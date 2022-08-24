@@ -99,11 +99,17 @@ void	Bureaucrat::decrementGrade(void)
 
 void	Bureaucrat::signForm(Form& form)
 {
-	if(form.getIfSigned())
+	if (form.getIfSigned())
+		std::cout << "The form : " << form.getName() << " is already signed" << std::endl;
+	else if(this->_grade <= form.getSignGrade())
+	{
+		form.setIfSigned();
 		std::cout << this->_name << " signed form : " << form.getName() << std::endl;
+	}
 	else
-		std::cout << this->name << "couldn't sign form : " << form.getName() << " because his grade is lower than required" << std::endl;
+		std::cout << this->_name << " couldn't sign form : " << form.getName() << ", because his grade is lower than required" << std::endl;
 }
+
 std::ostream& operator<<(std::ostream& o, Bureaucrat& obj)
 {
 	o << obj.getName() << ", Bureaucrat " << obj.getGrade() << std::endl;

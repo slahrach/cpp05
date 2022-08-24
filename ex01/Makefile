@@ -5,7 +5,7 @@ STDFLAGS = -std=c++98
 FLAGS = -Wall -Wextra -Werror
 
 all :
-	clang++ main.cpp Bureaucrat.cpp ${FLAGS} ${STDFLAGS} -o ${NAME}
+	clang++ main.cpp Bureaucrat.cpp Form.cpp ${FLAGS} ${STDFLAGS} -o ${NAME}
 
 clean :
 	rm -rf ${NAME}
