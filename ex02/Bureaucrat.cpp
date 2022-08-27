@@ -112,7 +112,7 @@ void	Bureaucrat::signForm(Form& form)
 
 void	Bureaucrat::executeForm(Form const& form)
 {
-	if (this->_grade <= form.getExecGrade() && form.getIfSigned())
+	if (form.execute(*this))
 		std::cout << this->_name << " signed form : " << form.getName() << std::endl;
 	else
 		std::cout << this->_name << " couldn't sign the form" << std::endl;

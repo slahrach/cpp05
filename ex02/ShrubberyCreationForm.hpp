@@ -9,5 +9,6 @@ class ShrubberyCreationForm : public Form
 		~ShrubberyCreationForm(void);
 		ShrubberyCreationForm(ShrubberyCreationForm& copy);
 		ShrubberyCreationForm& operator=(ShrubberyCreationForm& obj);
-		virtual std::string getTarget(void) const;
+		std::string getTarget(void) const;
+		virtual bool	execute(Bureaucrat const & executor) const;
 };

@@ -10,5 +10,6 @@ class RobotomyRequestForm : public Form
 		RobotomyRequestForm(RobotomyRequestForm& copy);
 		RobotomyRequestForm& operator=(RobotomyRequestForm& obj);
 		virtual std::string getTarget(void) const;
+		virtual bool	execute(Bureaucrat const & executor) const;
 		static int helper;
 };

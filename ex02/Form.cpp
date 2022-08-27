@@ -21,7 +21,7 @@ Form::Form(std::string name, int grade1, int grade2)
 			this->_name = name;
 			this->exec_grade = grade2;
 			if_signed = 0;
-			std::cout << "Form " << this->_name << " Constructor called" << std::endl;
+			std::cout << "Form Constructor called" << std::endl;
 		}
 	}
 	catch(const std::exception & e)
@@ -33,7 +33,7 @@ Form::Form(std::string name, int grade1, int grade2)
 
 Form::~Form(void)
 {
-	std::cout << "Form " << this->_name << " Destructor called" << std::endl;
+	std::cout << "Form Destructor called" << std::endl;
 }
 
 Form::Form(void)
@@ -44,7 +44,7 @@ Form::Form(void)
 Form::Form(Form& copy)
 {
 	*this = copy;
-	std::cout << "Form " << this->_name << " Copy Constructor called" << std::endl;
+	std::cout << "Form Copy Constructor called" << std::endl;
 }
 
 Form& Form::operator=(Form& obj)
@@ -106,24 +106,6 @@ void	Form::setIfSigned(void)
 {
 	if (!this->if_signed)
 		this->if_signed = 1;
-}
-
-void	Form::execute(Bureaucrat const & executor) const
-{
-	try
-	{
-		if (!this->if_signed || executor.getGrade() > this->exec_grade)
-		{
-			GradeTooLowException e;
-			throw e;
-		}
-		else
-			std::cout << "executor : " << executor.getName() << " can execute " << this->_name << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
 }
 
 std::ostream& operator <<(std::ostream &o, Form& obj)
