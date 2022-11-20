@@ -2,10 +2,14 @@
 
 int main()
 {
-	std::string  god = "god";
-	Bureaucrat a(-1, god);
-	Bureaucrat b(160, god);
-	Bureaucrat c(1, god);
-	std::cout << c << std::endl;
+	const std::string lil = "lil";
+	Bureaucrat a;
+	Bureaucrat b(160, lil);
+	Bureaucrat c(1, lil);
+	std::cout << c << a << std::endl;
 	c.incrementGrade();
+	a.decrementGrade();
+	c.decrementGrade();
+	a.incrementGrade();
+	std::cout << c << a<< std::endl;
 }

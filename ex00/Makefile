@@ -1,15 +1,29 @@
 NAME = bureau
 
+CC = c++
+
+CFLAGS = -Wall -Wextra -Werror
+
 STDFLAGS = -std=c++98
 
-FLAGS = -Wall -Wextra -Werror
+SRCS = main.cpp Bureaucrat.cpp
 
-all :
-	clang++ main.cpp Bureaucrat.cpp ${FLAGS} ${STDFLAGS} -o ${NAME}
+OBJS = ${SRCS:.cpp=.o}
+
+all : ${NAME}
+
+${NAME} : ${OBJS}
+	${CC} ${CFLAGS} ${STDFLAGS} ${OBJS} -o ${NAME}
 
 clean :
-	rm -rf ${NAME}
+	rm -rf ${OBJS}
 
 fclean : clean
+	rm -rf ${NAME}
 
-re : clean all
+re : fclean all
+
+%.o : %.cpp
+	${CC} ${CFLAGS} ${STDFLAGS} -c $<
+
+.PHONY: clean all fclean re
