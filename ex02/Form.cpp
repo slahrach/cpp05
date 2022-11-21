@@ -1,7 +1,12 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(std::string name, int grade1, int grade2)
+Form::Form(void) : _name("form"), if_signed(0), sign_grade(150), exec_grade(150)
+{
+	std::cout << "Form Default Constructor Called" << std::endl;
+}
+
+Form::Form(std::string name, int grade1, int grade2) : _name(name), if_signed(0), sign_grade(grade1), exec_grade(grade2)
 {
 	try
 	{
@@ -17,11 +22,7 @@ Form::Form(std::string name, int grade1, int grade2)
 		}
 		else
 		{
-			this->sign_grade = grade1;
-			this->_name = name;
-			this->exec_grade = grade2;
-			if_signed = 0;
-			std::cout << "Form Constructor called" << std::endl;
+			std::cout << "Form Parametrized Constructor called" << std::endl;
 		}
 	}
 	catch(const std::exception & e)
@@ -36,32 +37,20 @@ Form::~Form(void)
 	std::cout << "Form Destructor called" << std::endl;
 }
 
-Form::Form(void)
+Form::Form(Form& copy) : _name(copy.getName()), if_signed(copy.getIfSigned()), sign_grade(copy.getSignGrade()), exec_grade(copy.getExecGrade())
 {
-	std::cout << "Form Default Constructor called" << std::endl;
-}
-
-Form::Form(Form& copy)
-{
-	*this = copy;
 	std::cout << "Form Copy Constructor called" << std::endl;
 }
 
 Form& Form::operator=(Form& obj)
 {
-	this->_name = obj.getName();
 	this->if_signed = obj.getIfSigned();
-	this->sign_grade = obj.getSignGrade();
-	this->exec_grade = obj.getExecGrade();
 	return (*this);
 }
 
 bool Form::getIfSigned(void) const
 {
-	if (this->if_signed)
-		return (1);
-	else
-		return (0);
+	return (this->if_signed);
 }
 
 int	Form::getSignGrade(void) const
@@ -88,13 +77,8 @@ void	Form::beSigned(Bureaucrat& brc)
 			Form::GradeTooLowException low;
 			throw low;
 		}
-		else if (this->if_signed)
-			std::cout << "The form : " << this->getName() << " is already signed" << std::endl;
 		else
-		{
 			this->if_signed = 1;
-			std::cout << brc.getName() << " signed form " << this->_name << std::endl;
-		}
 	}
 	catch(const std::exception & e)
 	{
@@ -104,16 +88,25 @@ void	Form::beSigned(Bureaucrat& brc)
 
 void	Form::setIfSigned(void)
 {
-	if (!this->if_signed)
-		this->if_signed = 1;
+	this->if_signed = 1;
 }
 
 std::ostream& operator <<(std::ostream &o, Form& obj)
 {
-	o << obj.getName() << " Form, has sign grade : " << obj.getSignGrade() << " and execution sign : " << obj.getExecGrade();
+	o << obj.getName() << " Form, has sign grade : " << obj.getSignGrade() << " and execution grade : " << obj.getExecGrade();
 	if (obj.getIfSigned())
 		o << " . The form is signed" << std::endl;
 	else
 		o << " . The form is not signed" << std::endl;
 	return (o);
+}
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+	return("grade too high");
+}
+
+const char *Form::GradeTooLowException::what() const throw()
+{
+	return("grade too low");
 }

@@ -3,7 +3,7 @@
 
 int main()
 {
-	std::string name = "b1";
+	const std::string name = "b1";
 	Form f1("name 1", 2, 1);
 	std::cout << f1 << std::endl;
 	Form f2("name 2", 0, 151);
