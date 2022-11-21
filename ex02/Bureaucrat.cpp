@@ -128,11 +128,14 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 
 void	Bureaucrat::executeForm(Form const& form)
 {
-	form.execute(*this);
-	if (this->getGrade() <= form.getExecGrade() && form.getIfSigned())
+	try
 	{
+		form.execute(*this);
 		std::cout << this->_name << " executed form : " << form.getName() << std::endl;
 	}
-	else
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
 		std::cout << this->_name << " couldn't execute the form" << std::endl;
+	}
 }

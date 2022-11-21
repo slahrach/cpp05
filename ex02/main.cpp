@@ -6,14 +6,17 @@
 int main()
 {
 	//ShrubberyCreationForm sh("home");
-	//RobotomyRequestForm ro1("me");
-	PresidentialPardonForm p("nta");
+	RobotomyRequestForm r("me");
+	RobotomyRequestForm ro1("hey");
+	//PresidentialPardonForm p("p");
 	const std::string name = "b1";
-	Bureaucrat b1(6, name);
-	b1.signForm(p);
-	std::cout << p.getIfSigned() << std::endl;
+	Bureaucrat b1(4, name);
+	b1.signForm(ro1);
+	b1.signForm(r);
+	std::cout << ro1.getIfSigned() << std::endl;
 	//sh.execute(b1);
 	//ro1.execute(b1);
 	// ro2.execute(b1);
-	b1.executeForm(p);
+	b1.executeForm(ro1);
+	b1.executeForm(ro1);
 }

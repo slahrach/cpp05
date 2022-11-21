@@ -25,7 +25,7 @@ class Form
 	};
 	Form(void);
 	Form(std::string name, int grade1, int grade2);
-	~Form(void);
+	virtual ~Form(void);
 	Form(Form& copy);
 	Form& operator=(Form& obj);
 	std::string getName(void) const;

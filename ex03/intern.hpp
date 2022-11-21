@@ -3,9 +3,17 @@
 
 class Intern
 {
-    Intern(void);
-    ~Intern(void);
-    Intern(Intern& copy);
-    Intern& operator = (Intern &obj);
-    Form* makeForm(std::string name, std::string target);
+	std::string name;
+	public :
+	class ExistException : public std::exception
+	{
+		public:
+		const char * what() const throw();
+	};
+	Intern(void);
+	~Intern(void);
+	Intern(Intern& copy);
+	Intern& operator = (Intern &obj);
+	std::string getName(void) const;
+	Form* makeForm(std::string name, std::string target);
 };

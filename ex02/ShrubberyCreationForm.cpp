@@ -37,41 +37,34 @@ std::string ShrubberyCreationForm::getTarget(void)const
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	try
-	{
-		if (!this->getIfSigned() || executor.getGrade() > this->getExecGrade())
+	if (!this->getIfSigned() || executor.getGrade() > this->getExecGrade())
 		{
 			GradeTooLowException e;
 			throw e;
 		}
-		else
-		{
-			std::string	filename;
-			filename = this->_target + "_shrubbery";
-			std::ofstream fi(filename);
-			if (fi.std::ofstream::is_open())
-			{
-				std::cout << filename << " created !" <<  std::endl;
-			fi << "        # #### ####" << std::endl;
-			fi <<  "      ### |/#|### |/####" << std::endl;
-			fi << "     ##|/#/ |||/##/_/##/_#" << std::endl;
-			fi << "   ###  |/###|/ |/ # ###" << std::endl;
-			fi << " ##_|_#|_|## | #/###_/_####" << std::endl;
-			fi << "## #### # / #| /  #### ##/##" << std::endl;
-			fi << " __#_--###`  |{,###---###-~" << std::endl;
-			fi << "            |}{" << std::endl;
-			fi << "            }}{" << std::endl;
-			fi << "            }}{" << std::endl;
-			fi << "       	   {{}" << std::endl;
-			fi << "      , -=-~{ .-^- _" << std::endl;
-			fi << "            `}" << std::endl;
-			fi << "             {" << std::endl;
-				}
-		}
-	}
-	catch(const std::exception& e)
+	else
 	{
-		std::cerr << e.what() << std::endl;
+		std::string	filename;
+		filename = this->_target + "_shrubbery";
+		std::ofstream fi(filename);
+		if (fi.std::ofstream::is_open())
+		{
+			std::cout << filename << " created !" <<  std::endl;
+		fi << "        # #### ####" << std::endl;
+		fi <<  "      ### |/#|### |/####" << std::endl;
+		fi << "     ##|/#/ |||/##/_/##/_#" << std::endl;
+		fi << "   ###  |/###|/ |/ # ###" << std::endl;
+		fi << " ##_|_#|_|## | #/###_/_####" << std::endl;
+		fi << "## #### # / #| /  #### ##/##" << std::endl;
+		fi << " __#_--###`  |{,###---###-~" << std::endl;
+		fi << "            |}{" << std::endl;
+		fi << "            }}{" << std::endl;
+		fi << "            }}{" << std::endl;
+		fi << "       	   {{}" << std::endl;
+		fi << "      , -=-~{ .-^- _" << std::endl;
+		fi << "            `}" << std::endl;
+		fi << "             {" << std::endl;
+		}
 	}
 }
 

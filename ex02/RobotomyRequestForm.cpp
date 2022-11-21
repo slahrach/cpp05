@@ -33,26 +33,19 @@ std::string RobotomyRequestForm::getTarget(void)const
 
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	try
+	if (!this->getIfSigned() || executor.getGrade() > this->getExecGrade())
 	{
-		if (!this->getIfSigned() || executor.getGrade() > this->getExecGrade())
-		{
-			GradeTooLowException e;
-			throw e;
-		}
-		else
-		{
-			std::cout << "zzzz....zzzzz..." << std::endl;
-			if (helper %2)
-				std::cout << this->_target << " has been robotomized successfully" << std::endl;
-			else
-				std::cout << this->_target << " couldn't be robotomized " << std::endl;
-			helper++;
-		}
+		GradeTooLowException e;
+		throw e;
 	}
-	catch(const std::exception& e)
+	else
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << "zzzz....zzzzz..." << std::endl;
+		if (helper %2)
+			std::cout << this->_target << " has been robotomized successfully" << std::endl;
+		else
+			std::cout << this->_target << " couldn't be robotomized " << std::endl;
+		helper++;
 	}
 }
 
